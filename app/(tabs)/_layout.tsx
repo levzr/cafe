@@ -47,7 +47,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="history"
+        name="about_us"
         options={{
           title: 'Sobre Nosotros',
           tabBarIcon: ({ color, size }) => (

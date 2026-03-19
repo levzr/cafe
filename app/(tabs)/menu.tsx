@@ -1,54 +1,70 @@
+import { useEffect, useState } from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { Colors } from "../constants/colors";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../services/firebaseConfig";
+
 
 export default function Menu() {
+  const [productos, setProductos] = useState<any[]>([]);
+
+  useEffect(() => {
+    const obtenerProductos = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "productos"));
+
+        const lista = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+
+        setProductos(lista);
+      } catch (error) {
+        console.log("Error:", error);
+      }
+    };
+
+    obtenerProductos();
+  }, []);
+
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Menú – Café del Valle</Text>
+      <Text style={styles.title}>Menú</Text>
 
-      {/* Bebidas Calientes */}
-      <Text style={styles.section}>☕ Bebidas Calientes</Text>
-      <Text style={styles.item}>Café Americano – L 45</Text>
-      <Text style={styles.item}>Cappuccino – L 60</Text>
-      <Text style={styles.item}>Latte – L 65</Text>
-      <Text style={styles.item}>Chocolate Caliente – L 55</Text>
-
-      {/* Bebidas Heladas */}
-      <Text style={styles.section}>🧊 Bebidas Heladas</Text>
-      <Text style={styles.item}>Café Frappé – L 75</Text>
-      <Text style={styles.item}>Latte Helado – L 70</Text>
-      <Text style={styles.item}>Té Helado Natural – L 40</Text>
-
-      {/* Postres */}
-      <Text style={styles.section}>🍰 Postres y Comida</Text>
-      <Text style={styles.item}>Pastel de Chocolate – L 50</Text>
-      <Text style={styles.item}>Cheesecake – L 60</Text>
-      <Text style={styles.item}>Croissant – L 35</Text>
-      <Text style={styles.item}>Emparedado de Jamón y Queso – L 55</Text>
+      {productos.map((item) => (
+        <View key={item.id} style={styles.card}>
+          <Text style={styles.nombre}>{item.nombre}</Text>
+          <Text style={styles.precio}>L. {item.precio}</Text>
+          <Text style={styles.categoria}>{item.categoria}</Text>
+        </View>
+      ))}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.secondary,
     padding: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: Colors.primary,
     marginBottom: 20,
   },
-  section: {
+  card: {
+    backgroundColor: "#F5EFE6",
+    padding: 15,
+    marginBottom: 10,
+    borderRadius: 10,
+  },
+  nombre: {
     fontSize: 18,
     fontWeight: "bold",
-    color: Colors.accent,
-    marginTop: 15,
   },
-  item: {
+  precio: {
     fontSize: 16,
-    color: Colors.softBrown,
-    marginVertical: 5,
+  },
+  categoria: {
+    fontSize: 14,
+    color: "gray",
   },
 });
