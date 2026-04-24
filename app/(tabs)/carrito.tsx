@@ -20,7 +20,7 @@ export default function CarritoScreen() {
 
     mensaje += `\nTotal: L. ${total}`;
 
-    const url = `https://wa.me/504XXXXXXXX?text=${encodeURIComponent(mensaje)}`;
+    const url = `https://wa.me/50494664075?text=${encodeURIComponent(mensaje)}`;
     Linking.openURL(url);
   };
 
