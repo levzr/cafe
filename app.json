@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "cafe-app",
+    "name": "Cafe del Valle",
     "slug": "cafe-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -12,6 +12,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.levzr.cafedelvalle",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -43,6 +44,19 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f734b3c5-6418-4b85-8d51-56c1ec007ad8"
+      }
+    },
+    "owner": "levzr",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/f734b3c5-6418-4b85-8d51-56c1ec007ad8"
     }
   }
 }

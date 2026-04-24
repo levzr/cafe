@@ -1,12 +1,13 @@
-import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
           headerStyle: {
-          backgroundColor: "#4B2E2B",
+          backgroundColor: "#4b2e2b",
           },
           headerTintColor: "#FFFFFF",
           tabBarStyle: {
@@ -52,6 +53,16 @@ export default function TabLayout() {
           title: 'Sobre Nosotros',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="information-circle" size={size} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="carrito"
+        options={{
+          title: "Carrito",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="cart" size={size} color={color} />
           ),
         }}
       />

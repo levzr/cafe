@@ -1,5 +1,6 @@
-import { ScrollView, Text, StyleSheet, Image, View } from "react-native";
-import { Theme } from "../constants/theme";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Theme } from "../../constants/theme";
+
 
 export default function History() {
   return (
@@ -10,6 +11,7 @@ export default function History() {
         <Image
           source={require("../../assets/images/logo.png")}
           style={styles.image}
+          style={{ width: 200, height: 200 }}
         />
       </View>
 
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffe5e5",
     padding: 15,
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 30,  
   },
 
   warningText: {
